@@ -46,8 +46,8 @@
         .falling {
             position: absolute;
             top: -140px;
-            width: 135px; /* Увеличили цветы и конфеты */
-            height: 135px; 
+            width: 110px; /* Уменьшили цветы и конфеты */
+            height: 110px; 
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -57,7 +57,7 @@
 
         .word-label {
             position: absolute;
-            top: 125px; /* Переместили слова чуть ниже из-за увеличения картинки */
+            top: 100px; /* Вернули слова чуть выше из-за уменьшения картинок */
             left: 50%;
             transform: translateX(-50%);
             color: #fff;
@@ -311,9 +311,9 @@
     const FALL_SPEED_BASE = 1.6; 
     const FALL_SPEED_RAND = 0.8; 
     const SPAWN_INTERVAL = 300;
-    const MIN_HORIZONTAL_GAP = 140; /* Слегка увеличили отступ между предметами */
+    const MIN_HORIZONTAL_GAP = 120; /* Немного уменьшили отступ между предметами */
     const SIDE_MARGIN = 80;
-    const HERO_SCALE = 1.3; /* Слегка увеличили масштаб кролика для большей объемности */
+    const HERO_SCALE = 1.0; /* Вернули масштаб к базовому, чтобы кролик был аккуратнее */
     const WORD_FONT_SIZE = 28; 
     const MAX_ON_SCREEN = 3;
     
@@ -524,7 +524,7 @@
             }
         }
 
-        const width = 135; /* Синхронизировали ширину предметов */
+        const width = 110; /* Синхронизировали ширину предметов в скрипте */
         const x = getNonOverlappingX(width);
         el.style.left = x + "px";
 
@@ -580,10 +580,10 @@
         const heroRect = heroEl.getBoundingClientRect();
         const gameRect = game.getBoundingClientRect();
 
-        /* Адаптировали область столкновений (хитбокс) под увеличенного кролика */
-        const heroLeft = heroRect.left - gameRect.left + 70; 
-        const heroRight = heroRect.right - gameRect.left - 70;
-        const heroTop = heroRect.top - gameRect.top + 80;
+        /* Адаптировали область столкновений (хитбокс) - сместили границы внутрь пропорционально новому размеру */
+        const heroLeft = heroRect.left - gameRect.left + 75; 
+        const heroRight = heroRect.right - gameRect.left - 75;
+        const heroTop = heroRect.top - gameRect.top + 130; /* Опустили верхнюю границу, чтобы обойти уши */
         const heroBottom = heroRect.bottom - gameRect.top;
 
         const triggerY = rect.height / 3.5;
@@ -613,10 +613,10 @@
             }
 
             const objRect = obj.el.getBoundingClientRect();
-            const oLeft = objRect.left - gameRect.left + 30;
-            const oRight = objRect.right - gameRect.left - 30;
-            const oTop = objRect.top - gameRect.top + 30;
-            const oBottom = objRect.bottom - gameRect.top - 30;
+            const oLeft = objRect.left - gameRect.left + 25;
+            const oRight = objRect.right - gameRect.left - 25;
+            const oTop = objRect.top - gameRect.top + 25;
+            const oBottom = objRect.bottom - gameRect.top - 25;
 
             const intersect =
                 oRight > heroLeft &&
